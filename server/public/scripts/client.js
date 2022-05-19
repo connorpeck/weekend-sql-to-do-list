@@ -17,6 +17,12 @@ saveTask( newTask)
 
 function getTasks(){
     console.log('in getTasks');
+$.ajax({
+    method: 'GET',
+    url: '/tasks'
+}).then( function ( response ){
+    console.log('back from GET', response);
+})
 }// end getTasks
 
 function saveTask( newTask){

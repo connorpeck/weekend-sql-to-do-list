@@ -1,10 +1,16 @@
 const express = require('express');
 const tasksRouter = express.Router();
-const pool = require('../modules/pool');
+// const pool = require('../modules/pool');
 
 let tasksList = [];
 
-// POST route
+// GET
+tasksRouter.get('/', (req,res)=>{
+console.log('in /tasks GET');
+res.send(tasksList);
+})
+
+// POST 
 tasksRouter.post('/', (req, res)=> {
 console.log('/tasks POST', req.body);
 tasksList.push(req.body);
