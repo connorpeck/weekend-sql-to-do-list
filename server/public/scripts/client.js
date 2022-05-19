@@ -9,6 +9,33 @@ function addTask (){
     console.log('in addTask');
 let newTask = {
     task: $('#taskIn').val()
+    
+};
+saveTask( newTask)
 }
+// end add task
+
+function getTasks(){
+    console.log('in getTasks');
+}// end getTasks
+
+function saveTask( newTask){
 console.log(newTask);
-} // end add task
+}// end saveTask
+
+function saveTask(taskToPOST){
+    console.log('in saveTask', taskToPOST);
+$.ajax({
+    method: 'POST',
+    url: '/tasks', 
+    data: taskToPOST
+}).then( function( response ){
+console.log('back from POST response is:', response);
+getTasks();
+
+}).catch( function (err){
+    console.log(err);
+    alert('error in POST');
+})
+}
+
