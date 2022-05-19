@@ -1,7 +1,8 @@
 $(document).ready( onReady);
 
 function onReady (){
-    $('#addTaskButton').on('click', addTask)
+    $('#addTaskButton').on('click', addTask);
+    getTasks();
     console.log('in onReady JQ');
 }// end onReady
 
@@ -22,6 +23,11 @@ $.ajax({
     url: '/tasks'
 }).then( function ( response ){
     console.log('back from GET', response);
+    let el = $('#tasksOut');
+    el.empty();
+    for (let i=0; i<response.length; i++){
+        el.append(`<li> task: ${response[i].task}</li>`)
+    }
 })
 }// end getTasks
 
