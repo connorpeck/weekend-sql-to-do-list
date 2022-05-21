@@ -43,6 +43,18 @@ tasksRouter.delete('/', (req, res)=> {
     })
 })
 
+// PUT 
+tasksRouter.put('/', (req, res)=>{
+    console.log('in /tasks PUT', req.query);
+    const queryString = `UPDATE tasks SET completed=true WHERE id=$1;`
+    const values = [req.query.id];
+    pool.query( queryString, values).then( (results)=>{
+        res.sendStatus(200);
+    }).catch( (err)=>{
+        console.log(err);
+        res.sendStatus(500);
+    })
+})
 
 
 module.exports = tasksRouter;

@@ -3,6 +3,7 @@ $(document).ready( onReady);
 function onReady (){
     $('#addTaskButton').on('click', addTask);
     $('#tasksOut').on('click', '.deleteButton', deleteTask);
+    $('#tasksOut').on('click', '.completeButton', completeTask);
 
     getTasks();
     console.log('in onReady JQ');
@@ -29,7 +30,8 @@ $.ajax({
     el.empty();
     for (let i=0; i<response.length; i++){
         el.append(`<li> task: ${response[i].task}
-        <button class="deleteButton" data-id="${ response[i].id}">Delete</button></li>`)
+        <button class="deleteButton" data-id="${ response[i].id}">Delete</button>
+        <button class="completeButton" data-id="${ response[i].id}">Complete</button></li>`)
     }
 })
 }// end getTasks
@@ -68,3 +70,16 @@ $.ajax({
 })
 }// end deleteTask
 
+function completeTask (){
+    console.log('in completeTask', $(this).data('id'));
+$.ajax ({
+    method: 'PUT',
+    url: `/tasks?id=${ $( this ).data( 'id') }`
+}).then ( function (response){
+    console.log(response);
+    getTasks();
+}).catch( function ( err ){
+    console.log(err);
+    alert( 'error in completeTask');
+})
+}
