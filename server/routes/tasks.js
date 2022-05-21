@@ -30,6 +30,18 @@ console.log(err);
 })
 })
 
+// DELETE
+tasksRouter.delete('/', (req, res)=> {
+    console.log('in /taks DELETE', req.query);
+    const queryString = 'DELETE FROM tasks WHERE id=$1;'
+    const values = [req.query.id];
+    pool.query( queryString, values).then( (results)=>{
+        res.sendStatus(200);
+    }).catch(( err )=>{
+        console.log(err);
+        res.sendStatus(500);
+    })
+})
 
 
 

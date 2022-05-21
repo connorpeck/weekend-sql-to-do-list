@@ -2,6 +2,8 @@ $(document).ready( onReady);
 
 function onReady (){
     $('#addTaskButton').on('click', addTask);
+    $('#tasksOut').on('click', '.deleteButton', deleteTask);
+
     getTasks();
     console.log('in onReady JQ');
 }// end onReady
@@ -26,7 +28,8 @@ $.ajax({
     let el = $('#tasksOut');
     el.empty();
     for (let i=0; i<response.length; i++){
-        el.append(`<li> task: ${response[i].task}</li>`)
+        el.append(`<li> task: ${response[i].task}
+        <button class="deleteButton" data-id="${ response[i].id}">Delete</button></li>`)
     }
 })
 }// end getTasks
@@ -50,4 +53,18 @@ getTasks();
     alert('error in POST');
 })
 }
+
+function deleteTask(){
+    console.log('in deleteTask', $(this).data('id'));
+$.ajax({
+    method: 'DELETE',
+    url: `/tasks?id=${ $( this ).data( 'id') }`
+}).then( function (response){
+    console.log(response);
+    getTasks();
+}).catch(function ( err ){
+    console.log(err);
+    alert( 'error in deleteTask')
+})
+}// end deleteTask
 

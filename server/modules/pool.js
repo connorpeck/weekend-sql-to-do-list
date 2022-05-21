@@ -1,6 +1,6 @@
 const pg = require ('pg');
 const pool = new pg.Pool({
-    database: 'tasks_inventory',
+    database: 'weekend-to-do-app',
     host: 'localhost',
     post: 5432,
     max: 12,
