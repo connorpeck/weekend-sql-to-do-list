@@ -1,0 +1,21 @@
+table, th, td {
+    border: 3px solid rgb(240, 174, 174);
+    border-collapse: collapse;
+}
+
+body {
+    background-color: rgb(136, 160, 220);
+}
+
+.incompleteClass {
+background-color: rgb(211, 225, 225);
+}
+
+.completeClass {
+    background-color: aqua;
+}
+
+td {
+   
+    padding: 15px;
+}

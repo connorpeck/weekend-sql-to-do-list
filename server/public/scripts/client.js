@@ -3,7 +3,7 @@ $(document).ready( onReady);
 function onReady (){
     $('#addTaskButton').on('click', addTask);
     $('#tasksOut').on('click', '.deleteButton', deleteTask);
-    $('#tasksOut').on('click', '.completeButton', completeTask);
+    $('#tasksOut').on('click', '.completeButton', toggleTaskCompletion);
 
     getTasks();
     console.log('in onReady JQ');
@@ -29,10 +29,27 @@ $.ajax({
     let el = $('#tasksOut');
     el.empty();
     for (let i=0; i<response.length; i++){
-        el.append(`<li> task: ${response[i].task}
-        <button class="deleteButton" data-id="${ response[i].id}">Delete</button>
-        <button class="completeButton" data-id="${ response[i].id}">Complete</button></li>`)
+        let taskStatusClass = `incompleteClass`;
+        
+        if (response[i].completed == true){
+            console.log(response[i].completed);
+            taskStatusClass= `completeClass`;
+    
+            }
+
+        else 
+        {
+            taskStatusClass = `incompleteClass`;
+        }
+        el.append( 
+            `<tr id=${ response[i].id} class="${taskStatusClass}"> <td>task: ${response[i].task}
+            <button class="deleteButton" data-id="${ response[i].id}">Delete</button>
+            <button class="completeButton" data-id="${ response[i].id}">Complete</button></td></tr>`
+        );
+         
     }
+   
+   
 })
 }// end getTasks
 
@@ -70,7 +87,7 @@ $.ajax({
 })
 }// end deleteTask
 
-function completeTask (){
+function toggleTaskCompletion (){
     console.log('in completeTask', $(this).data('id'));
 $.ajax ({
     method: 'PUT',
