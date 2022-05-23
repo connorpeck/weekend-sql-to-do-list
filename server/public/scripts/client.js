@@ -38,13 +38,13 @@ $.ajax({
         if (response[i].completed == true){
             console.log(response[i].completed);
             taskStatusClass= `completeClass`;
-            textStatusStyle= `<del>task: ${response[i].task}</del>`
+            textStatusStyle= `<del> Task: ${response[i].task}</del>`
             }
 
         else 
         {
             taskStatusClass = `incompleteClass`;
-            textStatusStyle = `task: ${response[i].task}`
+            textStatusStyle = `Task: ${response[i].task}`
         }
         el.append( 
             `<tr id=${ response[i].id} class="${taskStatusClass}"> <td> ${textStatusStyle}

@@ -1,22 +1,55 @@
-table, th, td {
-    border: 3px solid rgb(240, 174, 174);
+table, thead, td {
+    border: 3px solid #FCD0A1;
     border-collapse: collapse;
+    align-items:center ;
 }
 
-body {
-    background-color: rgb(136, 160, 220);
+.bodyClass {
+    background-color: #B1B695;
 }
-
 .incompleteClass {
-background-color: rgb(109, 201, 201);
+background-color:   #A690A4;
+font-weight:200
 }
 
 .completeClass {
-    background-color: rgb(142, 237, 181);
+    background-color:  #5C415D;
+    color: rgb(255, 255, 255);
 }
 
-td {
-   
+td, thead{
+    font-family:Georgia, 'Times New Roman', Times, serif;
     padding: 15px;
 }
 
+input {
+    text-align: center;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+}
+
+h1 {
+    text-align: center;
+    color:  rgb(111, 109, 107);
+}
+
+section {
+    text-align: center;
+    padding: 20px;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+thead {
+    text-align: center;
+}
+.titleColor {
+    color: azure;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+}
+
+button {
+    font-family:Georgia, 'Times New Roman', Times, serif;
+}
