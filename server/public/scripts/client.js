@@ -44,13 +44,13 @@ $.ajax({
         else 
         {
             taskStatusClass = `incompleteClass`;
-            textStatusStyle = `Task: ${response[i].task}`
+            textStatusStyle = ` ${response[i].task}`
         }
         el.append( 
-            `<tr id=${ response[i].id} class="${taskStatusClass}"> <td> ${textStatusStyle}
-            <button class="deleteButton" data-id="${ response[i].id}"><span class="bi bi-trash"></span></button>
-            <button class="completeButton" data-id="${ response[i].id}">Complete</button>
-            <button class="undoButton" data-id="${ response[i].id}">Undo</button></td></tr>`
+            `<tr id=${ response[i].id} class="${taskStatusClass}"> <td> ${textStatusStyle}</td><td>
+            <button class="completeButton" data-id="${ response[i].id}"><span class='bi bi-check-circle'></span></button>
+            <button class="undoButton" data-id="${ response[i].id}"><span class="bi bi-arrow-counterclockwise"></span></button>
+            <button class="deleteButton" data-id="${ response[i].id}"><span class="bi bi-trash"></span></button></td></tr>`
         );
          
     }
