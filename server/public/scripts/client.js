@@ -16,6 +16,7 @@ let newTask = {
     task: $('#taskIn').val()
     
 };
+$('#taskIn').val('')
 saveTask( newTask)
 }
 // end add task
@@ -30,28 +31,30 @@ $.ajax({
     let el = $('#tasksOut');
     el.empty();
     for (let i=0; i<response.length; i++){
+        
         let taskStatusClass = `incompleteClass`;
         let textStatusStyle = ``
         
         if (response[i].completed == true){
             console.log(response[i].completed);
-            // taskStatusClass= `completeClass`;
+            taskStatusClass= `completeClass`;
             textStatusStyle= `<del>task: ${response[i].task}</del>`
             }
 
         else 
         {
-            // taskStatusClass = `incompleteClass`;
+            taskStatusClass = `incompleteClass`;
             textStatusStyle = `task: ${response[i].task}`
         }
         el.append( 
             `<tr id=${ response[i].id} class="${taskStatusClass}"> <td> ${textStatusStyle}
-            <button class="deleteButton" data-id="${ response[i].id}">Delete</button>
+            <button class="deleteButton" data-id="${ response[i].id}"><span class="bi bi-trash"></span></button>
             <button class="completeButton" data-id="${ response[i].id}">Complete</button>
             <button class="undoButton" data-id="${ response[i].id}">Undo</button></td></tr>`
         );
          
     }
+    // <button type="button" class="btn btn-light"><span class="bi bi-trash"></span></button>
    
    
 })
@@ -109,7 +112,7 @@ function undoFunction (){
     console.log('in undoFunction', $(this).data('id'));
 $.ajax ({
     method: 'PUT',
-    url: `/tasks?id=${ $( this ).data( 'id') }`
+    url: `/tasks/undo?id=${ $( this ).data( 'id') }`
 }).then ( function (response){
     console.log(response);
     getTasks();

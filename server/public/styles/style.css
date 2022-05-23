@@ -8,14 +8,15 @@ body {
 }
 
 .incompleteClass {
-background-color: rgb(211, 225, 225);
+background-color: rgb(109, 201, 201);
 }
 
 .completeClass {
-    background-color: rgb(48, 114, 75);
+    background-color: rgb(142, 237, 181);
 }
 
 td {
    
     padding: 15px;
 }
+

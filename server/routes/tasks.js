@@ -56,7 +56,7 @@ tasksRouter.put('/', (req, res)=>{
     })
 })
 
-tasksRouter.put('/', (req, res)=>{
+tasksRouter.put('/undo', (req, res)=>{
     console.log('in /tasks PUT', req.query);
     const queryString = `UPDATE tasks SET completed=false WHERE id=$1;`
     const values = [req.query.id];
