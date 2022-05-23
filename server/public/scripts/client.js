@@ -3,7 +3,8 @@ $(document).ready( onReady);
 function onReady (){
     $('#addTaskButton').on('click', addTask);
     $('#tasksOut').on('click', '.deleteButton', deleteTask);
-    $('#tasksOut').on('click', '.completeButton', toggleTaskCompletion);
+    $('#tasksOut').on('click', '.completeButton', completeTask);
+    $('#tasksOut').on('click', '.undoButton', undoFunction);
 
     getTasks();
     console.log('in onReady JQ');
@@ -30,21 +31,24 @@ $.ajax({
     el.empty();
     for (let i=0; i<response.length; i++){
         let taskStatusClass = `incompleteClass`;
+        let textStatusStyle = ``
         
         if (response[i].completed == true){
             console.log(response[i].completed);
-            taskStatusClass= `completeClass`;
-    
+            // taskStatusClass= `completeClass`;
+            textStatusStyle= `<del>task: ${response[i].task}</del>`
             }
 
         else 
         {
-            taskStatusClass = `incompleteClass`;
+            // taskStatusClass = `incompleteClass`;
+            textStatusStyle = `task: ${response[i].task}`
         }
         el.append( 
-            `<tr id=${ response[i].id} class="${taskStatusClass}"> <td>task: ${response[i].task}
+            `<tr id=${ response[i].id} class="${taskStatusClass}"> <td> ${textStatusStyle}
             <button class="deleteButton" data-id="${ response[i].id}">Delete</button>
-            <button class="completeButton" data-id="${ response[i].id}">Complete</button></td></tr>`
+            <button class="completeButton" data-id="${ response[i].id}">Complete</button>
+            <button class="undoButton" data-id="${ response[i].id}">Undo</button></td></tr>`
         );
          
     }
@@ -87,7 +91,7 @@ $.ajax({
 })
 }// end deleteTask
 
-function toggleTaskCompletion (){
+function completeTask (){
     console.log('in completeTask', $(this).data('id'));
 $.ajax ({
     method: 'PUT',
@@ -98,5 +102,19 @@ $.ajax ({
 }).catch( function ( err ){
     console.log(err);
     alert( 'error in completeTask');
+})
+}
+
+function undoFunction (){
+    console.log('in undoFunction', $(this).data('id'));
+$.ajax ({
+    method: 'PUT',
+    url: `/tasks?id=${ $( this ).data( 'id') }`
+}).then ( function (response){
+    console.log(response);
+    getTasks();
+}).catch( function ( err ){
+    console.log(err);
+    alert( 'error in undoFunction');
 })
 }

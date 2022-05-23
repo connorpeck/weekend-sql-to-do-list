@@ -7,7 +7,7 @@ const pool = require('../modules/pool');
 // GET
 tasksRouter.get('/', (req,res)=>{
 console.log('in /tasks GET');
-const queryString = `SELECT * FROM tasks;`;
+const queryString = `SELECT * FROM tasks ORDER BY id ASC;`;
 pool.query( queryString).then( (result)=>{
     res.send(result.rows);
 }).catch( (err)=>{
@@ -47,6 +47,18 @@ tasksRouter.delete('/', (req, res)=> {
 tasksRouter.put('/', (req, res)=>{
     console.log('in /tasks PUT', req.query);
     const queryString = `UPDATE tasks SET completed=true WHERE id=$1;`
+    const values = [req.query.id];
+    pool.query( queryString, values).then( (results)=>{
+        res.sendStatus(200);
+    }).catch( (err)=>{
+        console.log(err);
+        res.sendStatus(500);
+    })
+})
+
+tasksRouter.put('/', (req, res)=>{
+    console.log('in /tasks PUT', req.query);
+    const queryString = `UPDATE tasks SET completed=false WHERE id=$1;`
     const values = [req.query.id];
     pool.query( queryString, values).then( (results)=>{
         res.sendStatus(200);
