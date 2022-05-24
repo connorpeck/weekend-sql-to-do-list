@@ -1,24 +1,25 @@
 table, thead, td {
-    border: 3px solid #FCD0A1;
+    border: 3px solid #936c43;
     border-collapse: collapse;
     align-items:center ;
 }
 
 .bodyClass {
-    background-color: #B1B695;
+    background-color: #545C52;
 }
 .incompleteClass {
-background-color:   #A690A4;
+background-color:   #B1B695;
 font-weight:200
 }
 
 .completeClass {
-    background-color:  #5C415D;
+    background-color:  #545F66;
     color: rgb(255, 255, 255);
 }
 
 td, thead{
     font-family:Georgia, 'Times New Roman', Times, serif;
+    font-weight: 100;
     padding: 15px;
 }
 
@@ -29,12 +30,13 @@ input {
 
 h1 {
     text-align: center;
-    color:  rgb(111, 109, 107);
+    color:  rgb(223, 196, 169);
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 section {
     text-align: center;
-    padding: 20px;
+    padding: 25px;
 }
 
 table {
@@ -46,10 +48,16 @@ thead {
     text-align: center;
 }
 .titleColor {
-    color: azure;
+    color: #B1B695;
     font-family:Georgia, 'Times New Roman', Times, serif;
 }
 
 button {
     font-family:Georgia, 'Times New Roman', Times, serif;
 }
+
+button:hover {
+    background-color: #FCD0A1;
+}
+
+
