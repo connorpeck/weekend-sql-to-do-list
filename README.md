@@ -1,12 +1,8 @@
-# Project Name
+To-Do List
 
-[Project Instructions](./INSTRUCTIONS.md), this line may be removed once you have updated the README.md
+
 
 ## Description
-
-Your project description goes here. What problem did you solve? How did you solve it?
-
-Additional README details can be found [here](https://github.com/PrimeAcademy/readme-template/blob/master/README.md).
 
 
 This project took around 10 hours from start to finish. I created a full stack web application that took an input from the user, in this case it was an item that needed to be added to a to-do list. It then displayed it on the DOM as well as storing it in a database. The user had the ability to complete a task with visual feedback that the task was completed, delete a task, and undo a completion. I solved the problem of needed a place to keep track of on going tasks with a dynamic and simply UI.
