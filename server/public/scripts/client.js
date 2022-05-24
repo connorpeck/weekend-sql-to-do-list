@@ -44,7 +44,7 @@ $.ajax({
         else 
         {
             taskStatusClass = `incompleteClass`;
-            textStatusStyle = ` ${response[i].task}`
+            textStatusStyle = `Task: ${response[i].task}`
         }
         el.append( 
             `<tr id=${ response[i].id} class="${taskStatusClass}"> <td> ${textStatusStyle}</td><td>
